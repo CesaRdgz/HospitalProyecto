@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  mysql-hospital:
+    image: mysql:8.0.17
+    container_name: mysql-hospital
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: hospital
+    ports:
+      - "3306:3306"

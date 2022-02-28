@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="never">
+
+    <link href="/css/css.css" rel="stylesheet"/>
+    <script src="/js/script.js" th:src="@{/js/script.js}"></script>
+    <script src="/js/index.js" th:src="@{/js/index.js}"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Hospital</title>
+</head>
+<body>
+
+<header id="header">
+    <span th:if="${session.usuario == null}">
+		<div class="header-top">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-6 col-sm-6 col-4 header-top-left logo no-padding">
+						<a><img src="../img/logo.png"
+                                th:src="@{/img/hospital-sign-of-letter-h-inside-circles2.png}"></a>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-8 header-top-right no-padding">
+                        <a th:href="@{/auth/registro}" style="text-decoration: none">Registro</a>
+                        <a th:href="@{/auth/login}" style="text-decoration: none">Login</a>
+					</div>
+				</div>
+			</div>
+		</div>
+    </span>
+    <span th:if="${session.usuario != null}">
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-sm-6 col-4 header-top-left logo no-padding">
+                    <a><img src="../img/logo.png" th:src="@{/img/hospital-sign-of-letter-h-inside-circles2.png}"></a>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-8 header-top-right no-padding">
+                    <a th:href="@{/perfil}" style="text-decoration: none" th:text="${session.usuario.nombre}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-person-circle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                      <path fill-rule="evenodd"
+                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </span>
+    <div class="container main-menu">
+        <div class="row align-items-center justify-content-between d-flex">
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a th:href="@{/}">Home</a></li>
+                    <li><a href="#noticias">Noticias</a></li>
+                    <li><a th:href="@{/personal}">Personal</a></li>
+                    <li><a href="#map">Localizacion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row fullscreen d-flex justify-content-center align-items-center">
+            <div class="banner-content col-lg-9 col-md-12 justify-content-center">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="open-hour-area wow fadeInUp" id="opening-hour" data-wow-delay="100ms">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 open-hour-wrap">
+                <h1>Hospital Central</h1>
+                <a class="open-btn" href="#"> <span class="circle"></span>Estamos Abiertos
+                    <div class="date-list d-flex flex-row justify-content-center">
+                        <ul class="colm-1">
+                            <li>Lunes - Viernes</li>
+                            <li>Sabados</li>
+                            <li>Domingos</li>
+                        </ul>
+                        <ul class="colm-2">
+                            <li><span>:</span> 10:00am to 05:00pm</li>
+                            <li><span>:</span> 12:00am to 03:00pm</li>
+                            <li><span>:</span> Closed</li>
+                        </ul>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="noticias-area section-gap" id="noticias">
+    <div class="container">
+        <div class="row d-flex justify-content-center wow fadeInUp">
+            <div class="col-md-12 title pb-40 header-text text-center">
+                <h1>Noticias</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 wow fadeInUp">
+                <div class="single-service">
+                    <img class="img-fluid" src="img/img1.jpeg" th:src="@{/img/img1.jpeg}"  >
+                    <p>
+                        La Comunidad de Madrid estrenara un plan para impulsar  la investigacion y la accesibilidad de los pacientes a los medicos de terapias avanzadas.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp">
+                <div class="single-service">
+                    <img class="img-fluid" src="img/anestesiologia_y_reanimacion.jpg" th:src="@{/img/anestesiologia_y_reanimacion.jpg}" >
+                    <p>
+                        El servicio de anestesia del Hospital de la Paz, pionero en EspaÃ±a en emplear sistemas de recuperacion de gas anestesico.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp">
+                <div class="single-service">
+                    <img class="img-fluid"  th:src="@{/img/enrique_ruiz_escudero_sanidad_trasplantes.jpg}">
+                    <p>
+                        La Comunidad de Madrid, pionera en tranplantes de higado interhospitalarios con preservacion del organo.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp">
+                <div class="single-service">
+                    <img class="img-fluid"  th:src="@{/img/dsx6838.jpg}">
+                    <p>
+                        La comunidad de Madrid organiza un maraton de donacion de sangre simultaneo en la Real Casa de Correos, entre otros 23 puntos fijos y unidades moviles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="appointment-area section-gap relative" id="appointment">
+    <div class="container">
+        <div class="row align-items-center justify-content-end">
+            <div class="col-lg-6 no-padding appointment-right">
+                <h1 class="text-white wow fadeInRight">
+                    Concertar una Cita
+                </h1>
+                <form th:action="@{/cita}" th:object="${cita}" method="POST" class="appointment-form wow fadeInUp"
+                      id="myForm"
+                      data-wow-delay="100ms">
+                    <div class="row">
+                        <div class="col-lg-12 d-flex flex-column">
+                            <select name="tipo_cita" id="tipo_cita" placeholder="Turno" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Horario'" class="form-control mt-20"
+                                    required="" style="background-color: white" field="*{tipo_cita}">
+                                <option value="Consulta" selected>Consulta</option>
+                                <option value="Urgencia">Urgencia</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 d-flex flex-column content-select">
+                            <select name="turno" id="turno" placeholder="Turno" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Horario'" class="form-control mt-20"
+                                    required="" style="background-color: white" field="*{turno}">
+                                <option value="Mañana">Mañana</option>
+                                <option value="Tarde">Tarde</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <input name="fecha" id="fecha" type="datepicker" class="form-control mt-20"
+                                   placeholder="xx/xx/xxxx" field="*{fecha}" style="background-color: white" required>
+                        </div>
+
+                        <div class="col-lg-6 d-flex flex-column content-select">
+                            <select name="especificacion" id="especificacion" placeholder="Turno"
+                                    onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Horario'" class="form-control mt-20"
+                                    required="" style="background-color: white" field="*{turno}">
+                                <option value="Enfermero">Enfermeria</option>
+                                <option value="Pediatra">Pediatria</option>
+                                <option value="Psiquiatra">Psiquiatria</option>
+                                <option value="Neurologo">Neurologia</option>
+                                <option value="Cardiologo">Cardiologia</option>
+                                <option value="Cirujano">Cirugia</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-lg-12 flex-column">
+                            <div class="col-lg-12 flex-column">
+                                <textarea name="descripcion_patalogica" id="descripcion_patalogica" type="textarea"
+                                          class="form-control mt-20" placeholder="Descripcion de la patologia" field="*{descripcion_patalogica}"
+                                          style="background-color: white" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 d-flex justify-content-end send-btn">
+                            <button class="primary-btn header-btn text-uppercase mt-20">Confirmar Cita</button>
+                        </div>
+
+                        <div class="alert-msg"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br>
+
+<section class="appointment-area1 section-gap relative" id="appointment1">
+    <div class="container">
+        <div class="row align-items-center justify-content-end">
+            <div class="col-lg-6 no-padding appointment-right">
+                <h1 class="text-white wow fadeInRight">
+                    Es tu cita para Vacunarte?
+                </h1>
+                <form th:action="@{/citaVacuna}" th:object="${cita}" method="POST" class="appointment-form wow fadeInUp"
+                      id="myForm1"
+                      data-wow-delay="100ms">
+                    <div class="row">
+                        <div class="col-lg-6 d-flex flex-column">
+                            <select name="tipo_cita1" id="tipo_cita1" placeholder="Turno" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Horario'" class="form-control mt-20"
+                                    required="" style="background-color: white" field="*{tipo_cita}">
+                                <option value="Vacunacion">Vacunacion</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 d-flex flex-column">
+                            <select name="tipo_vacuna" id="tipo_vacuna" placeholder="Turno"
+                                    onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Horario'" class="form-control mt-20"
+                                    required="" style="background-color: white" field="*{tipo_cita}">
+                                <option value="Pfizer">Pfizer</option>
+                                <option value="Moderna">Moderna</option>
+                                <option value="Astrazeneca">Astrazeneca</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 d-flex flex-column">
+                            <select name="turno" id="turno1" placeholder="Turno" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Horario'" class="form-control mt-20"
+                                    required="" style="background-color: white" field="*{turno}">
+                                <option value="Mañana">Mañana</option>
+                                <option value="Tarde">Tarde</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <input name="fecha" id="fecha1" type="datepicker" class="form-control mt-20"
+                                   placeholder="xx/xx/xxxx" field="*{fecha}" style="background-color: white" required>
+                        </div>
+
+                        <div class="col-lg-6 d-flex flex-column">
+                            <select name="especificacion" id="especificacion1" placeholder="Turno"
+                                    onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Horario'" class="form-control mt-20"
+                                    required="" style="background-color: white" field="*{turno}">
+                                <option value="Enfermero">Enfermeria</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-12 d-flex justify-content-end send-btn">
+                            <button class="primary-btn header-btn text-uppercase mt-20">Confirmar Cita</button>
+                        </div>
+
+                        <div class="alert-msg"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="map"></div>
+
+<footer class="footer-area">
+    <div class="container">
+
+        <div class="row footer-bottom d-flex justify-content-between">
+            <div class="col-lg-12 col-sm-12 footer-social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-behance"></i></a>
+            </div>
+        </div>
+        <div class="row">
+            <p class="col-lg-12 col-sm-12 footer-text m-0 text-center">
+                &copy;<script>document.write(new Date().getFullYear());</script>
+            </p>
+        </div>
+
+    </div>
+    </div>
+</footer>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA37KIg2Fg69FrcOhyFDJVn5Qr8Vet-58&callback=initMap"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+</body>
+</html>

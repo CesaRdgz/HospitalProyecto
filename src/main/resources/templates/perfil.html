@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/perfil.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+</head>
+<body>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdey mt-3">
+    <div class="row">
+        <div class="profile-nav col-md-3">
+            <div class="panel">
+                <div class="user-heading round">
+                    <a href="#">
+                        <img src="../img/b.webp" th:src="@{/img/b.webp}">
+                    </a>
+                    <h1 th:text="${session.usuario.nombre}"></h1>
+                    <p th:text="${session.usuario.email}"></p>
+                </div>
+                <br>
+                <ul class="nav nav-pills nav-stacked">
+                    <li ><a href="#"> </i> Perfil</a></li><br>
+                </ul>
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a th:href="@{/logout}"> Logout</a></li><br>
+                </ul>
+            </div>
+        </div>
+        <div class="profile-info col-md-9">
+            <div class="panel">
+                <footer class="panel-footer">
+
+                </footer>
+            </div>
+            <div class="panel">
+                <div class="bio-graph-heading">
+                    <h1> Perfil</h1>
+                </div>
+                <div class="panel-body bio-graph-info">
+                    <br>
+                    <h1>Biografia e historial</h1>
+                    <div class="row">
+                        <div class="bio-row">
+                            <span>Nombre </span> : <span th:text="${session.usuario.nombre}"></span>
+                        </div>
+                        <div class="bio-row">
+                            <span>Apellidos </span> : <span th:text="${session.usuario.apellidos}"></span>
+                        </div>
+                        <div class="bio-row">
+                            <span>Pais </span> : <span> España</span>
+                        </div>
+                        <div class="bio-row">
+                            <span>Dni </span> : <span th:text="${session.usuario.dni}"></span>
+                        </div>
+                        <div class="bio-row">
+                            <span>Email </span> : <span th:text="${session.usuario.email}"></span>
+                        </div>
+                        <div class="bio-row">
+                            <span>Teléfono </span> : <span th:text="${session.usuario.telefono}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <form th:action="@{/editPassword}">
+                <H1>Nueva contraseña</H1><br>
+                <input type="password" name="contrasena" id="contrasena">
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
